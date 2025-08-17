@@ -26,28 +26,35 @@ public class ContactManager {
             System.out.println(SPLITTER);
             System.out.println("Укажите номер пункта меню:");
 
-            int choice = scanner.nextInt();
-            switch (choice) {
-                case 1:
-                    addContact(scanner);
-                    break;
-                case 2:
-                    showContacts();
-                    break;
-                case 3:
-                    searchContact(scanner);
-                    break;
-                case 4:
-                    deleteContact(scanner);
-                    break;
-                case 5:
-                    quit = true;
-                    break;
-                default:
-                    System.out.println("Некорректный ввод, введите цифру пункта меню!");
-                    break;
+            if (scanner.hasNextInt()) {
+                int choice = scanner.nextInt();
+                scanner.nextLine();
+                switch (choice) {
+                    case 1:
+                        addContact(scanner);
+                        break;
+                    case 2:
+                        showContacts();
+                        break;
+                    case 3:
+                        searchContact(scanner);
+                        break;
+                    case 4:
+                        deleteContact(scanner);
+                        break;
+                    case 5:
+                        quit = true;
+                        break;
+                    default:
+                        System.out.println("Некорректный ввод, введите цифру пункта меню!");
+                        break;
+                }
+            } else {
+                System.out.println("Введите только цифру пункта меню! [1...5]");
+                scanner.next();
             }
         }
+        scanner.close();
     }
 
     private static void addContact(Scanner scanner) {
