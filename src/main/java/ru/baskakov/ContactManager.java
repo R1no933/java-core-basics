@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class ContactManager {
     private static final int MAX_CAP_ARRAY = 3;
+    private static final String SPLITTER = "=============================================================";
     static String[] nameArray = new String[MAX_CAP_ARRAY];
     static String[] phoneArray = new String[MAX_CAP_ARRAY];
     static int countContact = 0;
@@ -12,8 +13,8 @@ public class ContactManager {
         Scanner scanner = new Scanner(System.in);
         boolean quit = false;
         while (!quit) {
+            System.out.println(SPLITTER);
             System.out.println("""
-                    =============================================================
                     Доброе пожаловать в Систему Учета Контактов:
                     Выберите дальнейшее действие, указав цифру из меню:
                     1. Добавить контакт
@@ -21,8 +22,8 @@ public class ContactManager {
                     3. Найти контакт
                     4. Удалить контакт
                     5. Выйти
-                    =============================================================
                     """);
+            System.out.println(SPLITTER);
             System.out.println("Укажите номер пункта меню:");
 
             int choice = scanner.nextInt();
@@ -31,7 +32,7 @@ public class ContactManager {
                     addContact(scanner);
                     break;
                 case 2:
-                    // TODO добавить вызов метода для просмотра контактов
+                    showContacts();
                     break;
                 case 3:
                     // TODO добавить вызов метода для поиска контактов
@@ -63,6 +64,17 @@ public class ContactManager {
         countContact++;
         System.out.println("Контакт успешно добавлен!");
         System.out.println(countContact);
+    }
+
+    private static void showContacts() {
+        System.out.println(SPLITTER);
+        System.out.println("Список контактов:");
+        for (int i = 0; i < nameArray.length; i++) {
+            if (nameArray[i] != null) {
+                System.out.printf("%d. Name: %s\n", i + 1, nameArray[i]);
+            }
+        }
+        System.out.println(SPLITTER);
     }
 
 }
