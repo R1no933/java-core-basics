@@ -3,9 +3,10 @@ package ru.baskakov;
 import java.util.Scanner;
 
 public class ContactManager {
-    private static final int MAX_CAP_ARRAY = 100;
-    private String[] nameArray = new String[MAX_CAP_ARRAY];
-    private String[] phoneArray = new String[MAX_CAP_ARRAY];
+    private static final int MAX_CAP_ARRAY = 3;
+    static String[] nameArray = new String[MAX_CAP_ARRAY];
+    static String[] phoneArray = new String[MAX_CAP_ARRAY];
+    static int countContact = 0;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -25,10 +26,9 @@ public class ContactManager {
             System.out.println("Укажите номер пункта меню:");
 
             int choice = scanner.nextInt();
-
             switch (choice) {
                 case 1:
-                    // TODO добавить вызов метода для добавления контактов
+                    addContact(scanner);
                     break;
                 case 2:
                     // TODO добавить вызов метода для просмотра контактов
@@ -47,6 +47,22 @@ public class ContactManager {
                     break;
             }
         }
+    }
+
+    private static void addContact(Scanner scanner) {
+        if (countContact >= MAX_CAP_ARRAY) {
+            System.out.println("Список контактов переполнен! Сперва удалите запись!");
+            return;
+        }
+        System.out.println("Введите имя контакта:");
+        String name = scanner.next();
+        nameArray[countContact] = name;
+        System.out.println("Введите номер контакта:");
+        String phone = scanner.next();
+        phoneArray[countContact] = phone;
+        countContact++;
+        System.out.println("Контакт успешно добавлен!");
+        System.out.println(countContact);
     }
 
 }
