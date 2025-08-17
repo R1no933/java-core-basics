@@ -38,7 +38,7 @@ public class ContactManager {
                     searchContact(scanner);
                     break;
                 case 4:
-                    // TODO добавить вызов метода для удаления контактов
+                    deleteContact(scanner);
                     break;
                 case 5:
                     quit = true;
@@ -104,6 +104,35 @@ public class ContactManager {
             System.out.println("Запрашиваемый контакт не найден!");
         } else {
             System.out.println(contactInfo);
+        }
+
+        System.out.println(SPLITTER);
+    }
+
+    private static void deleteContact(Scanner scanner) {
+        System.out.println(SPLITTER);
+        System.out.println("Введите имя контакта, который хотите удалить:");
+
+        String name = scanner.next();
+        boolean found = false;
+
+        for (int i = 0; i < nameArray.length; i++) {
+            if (nameArray[i] == null) {
+                continue;
+            }
+
+            if (nameArray[i].equals(name)) {
+                nameArray[i] = null;
+                phoneArray[i] = null;
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Указанный контакт не найден!");
+        } else {
+            System.out.println("Контакт успешно удален!");
         }
 
         System.out.println(SPLITTER);
