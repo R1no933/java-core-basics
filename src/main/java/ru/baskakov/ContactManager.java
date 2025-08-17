@@ -35,7 +35,7 @@ public class ContactManager {
                     showContacts();
                     break;
                 case 3:
-                    // TODO добавить вызов метода для поиска контактов
+                    searchContact(scanner);
                     break;
                 case 4:
                     // TODO добавить вызов метода для удаления контактов
@@ -77,4 +77,35 @@ public class ContactManager {
         System.out.println(SPLITTER);
     }
 
+    private static void searchContact(Scanner scanner) {
+        System.out.println(SPLITTER);
+        System.out.println("Введите имя для поиска:");
+
+        StringBuilder contactInfo = new StringBuilder();
+        String name = scanner.next();
+        boolean found = false;
+
+        for (int i = 0; i < nameArray.length; i++) {
+            if (nameArray[i] == null) {
+                continue;
+            }
+            if (nameArray[i].equals(name)) {
+                contactInfo.append((i + 1))
+                        .append(". Name: ")
+                        .append(nameArray[i])
+                        .append(", Phone: ")
+                        .append(phoneArray[i])
+                        .append("\n");
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("Запрашиваемый контакт не найден!");
+        } else {
+            System.out.println(contactInfo);
+        }
+
+        System.out.println(SPLITTER);
+    }
 }
